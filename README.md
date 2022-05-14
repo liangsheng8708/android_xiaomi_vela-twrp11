@@ -1,4 +1,4 @@
-## TWRP device tree for Xiaomi CC9 / MI 9 Lite (Pyxis)
+## TWRP device tree for Xiaomi CC9 Meitu Edition (vela)
 
 ## Features
 
@@ -35,19 +35,19 @@ repo sync
 Then add these projects to .repo/manifest.xml:
 
 ```xml
-<project path="device/xiaomi/pyxis" name="Pyxis-Community/android_device_xiaomi_pyxis-twrp" remote="github" revision="android-11" />
+<project path="device/xiaomi/vela" name="liangsheng8708/android_xiaomi_vela-twrp11" remote="github" revision="master" />
 ```
 
 Finally execute these:
 
 ```
 . build/envsetup.sh
-lunch twrp_pyxis-eng
+lunch twrp_vela-eng
 mka recoveryimage
 ```
 
 Install:
 
 ```
-fastboot flash recovery out/target/product/pyxis/recovery.img
+fastboot flash recovery out/target/product/vela/recovery.img
 ```
