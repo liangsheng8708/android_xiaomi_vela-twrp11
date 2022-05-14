@@ -1,0 +1,24 @@
+import /init.recovery.qcom_decrypt.rc
+
+on fs
+    wait /dev/block/platform/soc/${ro.boot.bootdevice}
+    symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
+    export ANDROID_ROOT /system_root
+    export TMPDIR /tmp
+    chmod 0660 /dev/qseecom
+    chown system drmrpc /dev/qseecom
+    chmod 0664 /dev/ion
+    chown system system /dev/ion
+
+on init
+    mkdir /system/bin
+    mkdir /system/etc
+    mkdir /cache/recovery
+    symlink /system/etc /etc
+    symlink /sbin/busybox /system/bin/sh
+    symlink /vendor/manifest.xml /system/manifest.xml
+
+on boot
+    setprop sys.usb.config adb
+    # Add DT2W
+    write /sys/class/input/input2/device/fts_gesture_mode 1
